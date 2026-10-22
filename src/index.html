@@ -1,3 +1,43 @@
 <!DOCTYPE html>
-
-this is a web site
+<html lang="zh-CN" style="--tk-primary: #ea580c">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TK Coding World</title>
+  <meta name="description" content="TK Coding World — Bring codes to world.">
+  <link rel="stylesheet" href="tk/tk.css">
+  <style>
+    body { display: grid; place-items: center; padding: 1rem; overflow: hidden; user-select: none; }
+    .hero { position: fixed; inset: 0; z-index: -1; padding: 0; }
+    .hero::before {
+      inset: -20% -10%; height: auto; opacity: .7;
+      /* 右上角光晕改为偏蓝、半径更大 */
+      background: radial-gradient(closest-side, color-mix(in oklab, var(--tk-primary) 22%, transparent), transparent),
+                  radial-gradient(circle 34vmax at 80% 25%, color-mix(in oklab, #eaf2ff, #d3c1ff 20%) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: ""; position: absolute; left: -10%; bottom: -25%; width: 60vmax; height: 60vmax; z-index: -1; pointer-events: none;
+      background: radial-gradient(closest-side, color-mix(in oklab, var(--tk-primary) 45%, transparent), transparent);
+      filter: blur(40px); opacity: .6;
+    }
+    .glass {
+      width: min(100%, 640px); padding: clamp(2.5rem, 8vw, 4.5rem) clamp(1.5rem, 6vw, 3.5rem); text-align: center;
+      border-radius: calc(var(--tk-radius) * 2);
+      background: color-mix(in oklab, var(--tk-surface) 45%, transparent);
+      border: 1px solid color-mix(in oklab, var(--tk-surface) 70%, transparent);
+      box-shadow: var(--tk-shadow-lg), inset 0 1px 0 color-mix(in oklab, #fff 40%, transparent);
+      backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
+      animation: tk-pop .8s var(--tk-ease);
+    }
+    .glass h1 { margin-bottom: .4em; }
+    .glass p { margin: 0; font-size: clamp(1.05rem, 1vw + .9rem, 1.35rem); color: var(--tk-muted); letter-spacing: .02em; }
+  </style>
+</head>
+<body>
+  <div class="hero" aria-hidden="true"></div>
+  <main class="glass">
+    <h1><span class="gradient-text">TK CODING</span></h1>
+    <p>Bring codes to world.</p>
+  </main>
+</body>
+</html>

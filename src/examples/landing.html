@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- 本页主题：橙色，同时演示覆盖圆角变量 -->
+<html lang="zh-CN" style="--tk-primary: #ea580c; --tk-radius: 16px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flowly · 产品落地页示例 · TK UI</title>
+  <link rel="stylesheet" href="../tk/tk.css">
+  <script src="../tk/tk.js"></script>
+  <style>
+    .price { font-size: 2.6rem; font-weight: 800; letter-spacing: -.04em; }
+    .price small { font-size: 1rem; color: var(--tk-muted); font-weight: 500; }
+    .plan ul { list-style: none; padding: 0; margin: 1.25rem 0 1.5rem; }
+    .plan li { padding: .35rem 0; }
+    .plan li::before { content: "✓"; color: var(--tk-primary); font-weight: 700; margin-right: .6rem; }
+    .plan.featured { border: 2px solid var(--tk-primary); position: relative; }
+    .mock { aspect-ratio: 16 / 8; margin-top: 3rem; border-radius: var(--tk-radius); border: 1px solid var(--tk-border);
+      background: linear-gradient(var(--tk-surface), var(--tk-surface-2)); box-shadow: var(--tk-shadow-lg); padding: 1rem; display: grid; grid-template-columns: 1fr 3fr; gap: 1rem; }
+    .mock div { border-radius: 10px; background: var(--tk-primary-soft); }
+    .mock div:last-child { background: repeating-linear-gradient(var(--tk-surface-2) 0 28px, transparent 28px 40px); }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="landing.html"><span class="brand-mark">F</span>Flowly</a>
+    <button class="nav-toggle" data-tk-nav aria-label="菜单" aria-expanded="false"><span></span></button>
+    <nav class="nav-menu">
+      <a href="#features">功能</a>
+      <a href="#pricing">价格</a>
+      <a href="#faq">FAQ</a>
+      <a href="../tkui.html">← 返回 TK UI</a>
+    </nav>
+    <button class="btn ghost icon" data-tk-mode aria-label="切换明暗模式">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a class="btn primary sm pill hide-sm" href="#pricing">免费试用</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">🎉 全新 2.0 版本发布</span>
+    <h1>让团队协作<span class="gradient-text">像水一样流畅</span></h1>
+    <p class="lead">Flowly 把任务、文档与沟通放在同一个地方。少一点切换，多一点专注。</p>
+    <div class="row center">
+      <a class="btn primary lg pill" href="#pricing">立即开始</a>
+      <button class="btn lg pill" data-tk-open="video">▶ 观看演示</button>
+    </div>
+    <div class="mock reveal"><div></div><div></div></div>
+  </div>
+</section>
+
+<section class="section alt" id="features">
+  <div class="container">
+    <div class="text-center mb-3"><h2>为什么选择 Flowly</h2><p class="lead">三大核心能力，覆盖团队日常。</p></div>
+    <div class="grid cols-3">
+      <div class="card hover reveal"><div class="icon-box">📋</div><h3>看板任务</h3><p class="muted">拖拽即可调整优先级，进度一目了然。</p></div>
+      <div class="card hover reveal"><div class="icon-box">📝</div><h3>实时文档</h3><p class="muted">多人同时编辑，评论与修订历史完整保留。</p></div>
+      <div class="card hover reveal"><div class="icon-box">🔔</div><h3>智能提醒</h3><p class="muted">只推送与你相关的变化，告别信息过载。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="text-center mb-3"><h2>简单透明的价格</h2><p class="lead">14 天免费试用，无需信用卡。</p></div>
+    <div class="grid cols-3" style="align-items: start">
+      <div class="card plan reveal">
+        <h3>个人版</h3><div class="price">¥0<small> / 月</small></div>
+        <ul><li>3 个项目</li><li>基础看板</li><li>社区支持</li></ul>
+        <button class="btn block" data-tk-toast="已选择个人版">选择</button>
+      </div>
+      <div class="card plan featured reveal">
+        <div class="row between"><h3 class="mb-0">团队版</h3><span class="badge">最受欢迎</span></div>
+        <div class="price mt-1">¥49<small> / 人 / 月</small></div>
+        <ul><li>无限项目</li><li>实时文档协作</li><li>智能提醒</li><li>优先支持</li></ul>
+        <button class="btn primary block" data-tk-toast="已选择团队版" data-type="success">开始试用</button>
+      </div>
+      <div class="card plan reveal">
+        <h3>企业版</h3><div class="price">定制</div>
+        <ul><li>私有部署</li><li>SSO 单点登录</li><li>专属客户经理</li></ul>
+        <button class="btn outline block" data-tk-open="contact">联系我们</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="faq">
+  <div class="container narrow">
+    <h2 class="text-center mb-3">常见问题</h2>
+    <details class="accordion" open><summary>试用结束后会自动扣费吗？</summary><p>不会。试用到期后需要你手动选择方案。</p></details>
+    <details class="accordion"><summary>可以随时取消吗？</summary><p>可以，取消后当前计费周期内仍可正常使用。</p></details>
+    <details class="accordion"><summary>数据安全如何保障？</summary><p>全链路加密传输与存储，并定期进行安全审计。</p></details>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card text-center" style="background: linear-gradient(135deg, var(--tk-primary), color-mix(in oklab, var(--tk-primary), #ec4899 50%)); color: #fff; border: 0; padding: clamp(2rem, 6vw, 4rem)">
+      <h2>准备好提升效率了吗？</h2>
+      <p style="opacity: .85">加入 10,000+ 正在使用 Flowly 的团队。</p>
+      <a class="btn lg pill" href="#pricing" style="--_fg: var(--tk-primary)">免费开始</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container row between"><span>© 2026 Flowly（示例品牌）</span><span class="row"><a href="#features">功能</a><a href="#pricing">价格</a><a href="../tkui.html">TK UI</a></span></div>
+</footer>
+
+<dialog class="modal" id="video">
+  <div class="modal-header"><h3>产品演示</h3><button class="btn ghost icon" data-tk-close aria-label="关闭">✕</button></div>
+  <div class="modal-body"><div class="mock" style="margin: 0"><div></div><div></div></div></div>
+</dialog>
+
+<dialog class="modal" id="contact">
+  <div class="modal-header"><h3>联系销售</h3><button class="btn ghost icon" data-tk-close aria-label="关闭">✕</button></div>
+  <div class="modal-body">
+    <div class="field"><label for="c1">公司名称</label><input id="c1"></div>
+    <div class="field"><label for="c2">团队人数</label><select id="c2"><option>50 人以下</option><option>50–500 人</option><option>500 人以上</option></select></div>
+  </div>
+  <div class="modal-footer"><button class="btn" data-tk-close>取消</button><button class="btn primary" data-tk-close data-tk-toast="已提交，我们会尽快联系你" data-type="success">提交</button></div>
+</dialog>
+</body>
+</html>

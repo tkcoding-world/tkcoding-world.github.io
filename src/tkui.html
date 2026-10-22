@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TK UI · 轻量静态页面 UI 框架</title>
+  <meta name="description" content="TK UI：零依赖、无需构建、支持按页面自定义主题色的轻量前端 UI 框架。">
+  <link rel="stylesheet" href="tk/tk.css">
+  <script src="tk/tk.js"></script>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="tkui.html"><span class="brand-mark">TK</span>TK UI</a>
+    <button class="nav-toggle" data-tk-nav aria-label="菜单" aria-expanded="false"><span></span></button>
+    <nav class="nav-menu">
+      <a class="active" href="tkui.html">首页</a>
+      <a href="examples/components.html">组件</a>
+      <a href="examples/landing.html">落地页</a>
+      <a href="examples/dashboard.html">仪表盘</a>
+      <a href="examples/blog.html">博客</a>
+    </nav>
+    <button class="btn ghost icon" data-tk-mode aria-label="切换明暗模式" data-tip="明 / 暗">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">v1.0 · gzip 后约 8KB · 零依赖</span>
+    <h1>为静态页面打造的<br><span class="gradient-text">轻量 UI 框架</span></h1>
+    <p class="lead">一个 CSS + 一个可选 JS，无需构建。改一个变量就能换主题色，自带暗色模式与自适应布局，直接放进 GitHub Pages 即可使用。</p>
+    <div class="row center">
+      <a class="btn primary lg pill" href="examples/components.html">浏览组件 →</a>
+      <a class="btn lg pill" href="#start">快速开始</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid" style="--min: 250px">
+      <div class="card hover reveal"><div class="icon-box">⚡</div><h3>足够小</h3><p class="muted">纯 CSS 变量 + 原生元素样式，无运行时依赖，无需 npm 或打包工具。</p></div>
+      <div class="card hover reveal"><div class="icon-box">🎨</div><h3>一行换主题</h3><p class="muted">设置 <code>--tk-primary</code>，悬停、浅色背景、焦点环等色阶由 <code>color-mix()</code> 自动派生。</p></div>
+      <div class="card hover reveal"><div class="icon-box">🌗</div><h3>暗色模式</h3><p class="muted">默认跟随系统，也可用 <code>data-mode</code> 强制指定，切换按钮会记住用户选择。</p></div>
+      <div class="card hover reveal"><div class="icon-box">📱</div><h3>自适应</h3><p class="muted">流式字号、自动换行网格、移动端折叠导航与侧边栏，适配手机到桌面。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="theme">
+  <div class="container">
+    <div class="text-center mb-3">
+      <h2>主题色实时预览</h2>
+      <p class="lead">点击色块或自选颜色，整页组件随之变化。</p>
+    </div>
+    <div class="grid cols-2" style="--gap: 2rem; align-items: center">
+      <div class="stack">
+        <div class="row" id="swatches"></div>
+        <div class="row">
+          <input type="color" id="picker" value="#4f46e5" aria-label="自定义主题色">
+          <code id="code">&lt;html style="--tk-primary:#4f46e5"&gt;</code>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row between mb-2">
+          <div class="row"><span class="avatar">TK</span><div><strong>预览卡片</strong><div class="small muted">组件随主题变化</div></div></div>
+          <span class="badge dot">在线</span>
+        </div>
+        <div class="progress mb-2"><span style="width: 68%"></span></div>
+        <div class="field"><input placeholder="聚焦查看焦点环"></div>
+        <div class="row">
+          <button class="btn primary" data-tk-toast="主题色看起来不错！">主按钮</button>
+          <button class="btn soft">柔和</button>
+          <button class="btn outline">描边</button>
+          <input type="checkbox" class="switch" checked aria-label="开关">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-3">
+      <h2>示例页面</h2>
+      <p class="lead">每个页面使用不同的主题色，展示按页定制的效果。</p>
+    </div>
+    <div class="grid" style="--min: 240px">
+      <a class="card hover reveal" href="examples/components.html" style="color: inherit; text-decoration: none">
+        <span class="badge">Indigo</span><h3 class="mt-1">组件总览</h3><p class="muted">全部组件及用法代码。</p>
+      </a>
+      <a class="card hover reveal theme" href="examples/landing.html" style="--tk-primary: #ea580c; color: inherit; text-decoration: none">
+        <span class="badge">Orange</span><h3 class="mt-1">产品落地页</h3><p class="muted">Hero、功能介绍、价格表、FAQ。</p>
+      </a>
+      <a class="card hover reveal theme" href="examples/dashboard.html" style="--tk-primary: #059669; color: inherit; text-decoration: none">
+        <span class="badge">Emerald</span><h3 class="mt-1">管理仪表盘</h3><p class="muted">侧边栏布局、统计卡片、数据表。</p>
+      </a>
+      <a class="card hover reveal theme" href="examples/blog.html" style="--tk-primary: #e11d48; color: inherit; text-decoration: none">
+        <span class="badge">Rose</span><h3 class="mt-1">博客文章</h3><p class="muted">适合阅读的窄栏排版。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="start">
+  <div class="container narrow">
+    <h2>快速开始</h2>
+    <p class="muted">把 <code>src/tk/</code> 下的两个文件引入页面即可：</p>
+<pre><code>&lt;!-- 1. 设置本页主题色（可选，二选一） --&gt;
+&lt;html lang="zh-CN" style="--tk-primary:#0ea5e9"&gt;
+&lt;html lang="zh-CN" data-primary="rose"&gt;
+
+&lt;!-- 2. 引入框架 --&gt;
+&lt;link rel="stylesheet" href="tk/tk.css"&gt;
+&lt;script src="tk/tk.js"&gt;&lt;/script&gt;   &lt;!-- 可选：交互 --&gt;
+
+&lt;!-- 3. 使用组件 --&gt;
+&lt;button class="btn primary"&gt;按钮&lt;/button&gt;</code></pre>
+    <div class="alert info"><div><strong>提示：</strong>某个区块想单独换色？给它加上 <code>class="theme"</code> 和 <code>style="--tk-primary:…"</code> 即可，上方示例卡片就是这样做的。</div></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container row between">
+    <span>© 2026 tkcoding-world · TK UI</span>
+    <span><a href="https://github.com/tkcoding-world/tkcoding-world.github.io">GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+  // 主题色预览：仅本页演示用
+  (function () {
+    var presets = { indigo: '#4f46e5', blue: '#2563eb', sky: '#0284c7', teal: '#0d9488', emerald: '#059669',
+      amber: '#d97706', orange: '#ea580c', rose: '#e11d48', pink: '#db2777', violet: '#7c3aed', slate: '#475569' };
+    var box = document.getElementById('swatches'), picker = document.getElementById('picker'), code = document.getElementById('code');
+    function apply(c) {
+      TK.setPrimary(c);
+      picker.value = c;
+      code.textContent = '<html style="--tk-primary:' + c + '">';
+    }
+    Object.keys(presets).forEach(function (name) {
+      var b = document.createElement('button');
+      b.className = 'btn icon pill';
+      b.style.background = presets[name];
+      b.setAttribute('aria-label', name);
+      b.dataset.tip = name;
+      b.onclick = function () { apply(presets[name]); };
+      box.appendChild(b);
+    });
+    picker.oninput = function () { apply(picker.value); };
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-primary="indigo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>组件总览 · TK UI</title>
+  <link rel="stylesheet" href="../tk/tk.css">
+  <script src="../tk/tk.js"></script>
+  <style>
+    .demo { margin-bottom: 3rem; scroll-margin-top: 80px; }
+    .demo h2 { font-size: 1.4rem; }
+    .demo pre { margin-top: 1rem; font-size: .8rem; }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="../tkui.html"><span class="brand-mark">TK</span>TK UI</a>
+    <button class="nav-toggle" data-tk-nav aria-label="菜单" aria-expanded="false"><span></span></button>
+    <nav class="nav-menu">
+      <a href="../tkui.html">首页</a>
+      <a class="active" href="components.html">组件</a>
+      <a href="landing.html">落地页</a>
+      <a href="dashboard.html">仪表盘</a>
+      <a href="blog.html">博客</a>
+    </nav>
+    <button class="btn ghost icon" data-tk-mode aria-label="切换明暗模式">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container section">
+  <h1>组件总览</h1>
+  <p class="lead mb-3">所有组件都只依赖 CSS 变量。本页使用 <code>&lt;html data-primary="indigo"&gt;</code>。</p>
+
+  <section class="demo" id="theme">
+    <h2>主题</h2>
+    <div class="grid cols-3">
+      <div class="card"><h4>整页</h4><p class="small muted mb-0">在 <code>&lt;html&gt;</code> 上设置 <code>style="--tk-primary:#hex"</code> 或 <code>data-primary="预设名"</code>。</p></div>
+      <div class="card theme" style="--tk-primary:#db2777"><h4>局部区域</h4><p class="small muted">加 <code>.theme</code> 并设置变量，只影响该区域。</p><button class="btn primary sm">粉色按钮</button></div>
+      <div class="card"><h4>运行时</h4><p class="small muted">调用 <code>TK.setPrimary(color)</code>。</p><button class="btn soft sm" onclick="TK.setPrimary('#0d9488')">换成 teal</button> <button class="btn ghost sm" onclick="TK.setPrimary('#4f46e5')">还原</button></div>
+    </div>
+    <p class="small muted mt-2">预设：indigo · blue · sky · teal · emerald · amber · orange · rose · pink · violet · slate。其他可覆盖变量：<code>--tk-radius</code>、<code>--tk-font</code>、<code>--tk-on-primary</code>。</p>
+  </section>
+
+  <section class="demo" id="buttons">
+    <h2>按钮</h2>
+    <div class="row">
+      <button class="btn primary">Primary</button>
+      <button class="btn">Default</button>
+      <button class="btn soft">Soft</button>
+      <button class="btn outline">Outline</button>
+      <button class="btn ghost">Ghost</button>
+      <button class="btn danger">Danger</button>
+    </div>
+    <div class="row mt-2">
+      <button class="btn primary sm">小号</button>
+      <button class="btn primary lg pill">大号圆角</button>
+      <button class="btn primary loading">加载中</button>
+      <button class="btn" disabled>禁用</button>
+      <button class="btn icon" aria-label="添加">＋</button>
+    </div>
+<pre><code>&lt;button class="btn primary"&gt;…&lt;/button&gt;   修饰: soft outline ghost danger | sm lg pill block icon | loading</code></pre>
+  </section>
+
+  <section class="demo" id="cards">
+    <h2>卡片</h2>
+    <div class="grid" style="--min: 260px">
+      <div class="card hover">
+        <img class="card-media" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='16' height='9' fill='url(%23g)'/%3E%3C/svg%3E" alt="">
+        <h3>带图片卡片</h3>
+        <p class="muted">使用 <code>.card-media</code> 让图片铺满顶部。</p>
+      </div>
+      <div class="card">
+        <div class="icon-box">✦</div>
+        <h3>图标卡片</h3>
+        <p class="muted">配合 <code>.icon-box</code> 展示功能点。</p>
+        <div class="card-footer row between"><span class="small muted">卡片底栏</span><a href="#cards">详情 →</a></div>
+      </div>
+      <div class="card stat">
+        <div class="stat-label">本月访问</div>
+        <div class="stat-value">48,213</div>
+        <span class="badge success">↑ 12.4%</span>
+      </div>
+    </div>
+<pre><code>&lt;div class="card hover"&gt;&lt;img class="card-media"&gt;…&lt;div class="card-footer"&gt;…&lt;/div&gt;&lt;/div&gt;</code></pre>
+  </section>
+
+  <section class="demo" id="badges">
+    <h2>徽章 / 提示</h2>
+    <div class="row mb-2">
+      <span class="badge">默认</span>
+      <span class="badge success dot">成功</span>
+      <span class="badge warning">警告</span>
+      <span class="badge danger">危险</span>
+      <span class="badge info">信息</span>
+    </div>
+    <div class="alert"><div><strong>主题色：</strong>不加修饰类时使用主题色。</div></div>
+    <div class="alert success"><div><strong>成功：</strong>文件已保存。</div></div>
+    <div class="alert warning"><div><strong>注意：</strong>磁盘空间即将用尽。</div></div>
+    <div class="alert danger"><div><strong>错误：</strong>网络连接失败。</div></div>
+<pre><code>&lt;span class="badge success dot"&gt;…&lt;/span&gt;   &lt;div class="alert warning"&gt;…&lt;/div&gt;</code></pre>
+  </section>
+
+  <section class="demo" id="forms">
+    <h2>表单</h2>
+    <div class="card">
+      <div class="grid cols-2">
+        <div class="field"><label for="f1">用户名</label><input id="f1" placeholder="请输入用户名"></div>
+        <div class="field"><label for="f2">邮箱 <span class="hint">我们不会公开</span></label><input id="f2" type="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="f3">城市</label><select id="f3"><option>上海</option><option>北京</option><option>深圳</option></select></div>
+        <div class="field"><label for="f4">网址</label><div class="input-group"><input id="f4" placeholder="your-site"><button class="btn">.github.io</button></div></div>
+      </div>
+      <div class="field"><label for="f5">留言</label><textarea id="f5" placeholder="写点什么…"></textarea></div>
+      <div class="row between">
+        <div class="row">
+          <label class="check"><input type="checkbox" checked>记住我</label>
+          <label class="check"><input type="radio" name="r" checked>选项 A</label>
+          <label class="check"><input type="radio" name="r">选项 B</label>
+          <label class="check"><input type="checkbox" class="switch">&nbsp;通知</label>
+        </div>
+        <input type="range" aria-label="滑块">
+      </div>
+    </div>
+<pre><code>&lt;div class="field"&gt;&lt;label&gt;…&lt;/label&gt;&lt;input&gt;&lt;/div&gt;   原生 input/select/textarea 自动美化；开关：&lt;input type="checkbox" class="switch"&gt;</code></pre>
+  </section>
+
+  <section class="demo" id="table">
+    <h2>表格</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>项目</th><th>负责人</th><th>状态</th><th>进度</th></tr></thead>
+        <tbody>
+          <tr><td>官网改版</td><td>Alex</td><td><span class="badge success">已完成</span></td><td style="min-width:120px"><div class="progress success"><span style="width:100%"></span></div></td></tr>
+          <tr><td>文档站点</td><td>Sam</td><td><span class="badge">进行中</span></td><td><div class="progress"><span style="width:60%"></span></div></td></tr>
+          <tr><td>移动端适配</td><td>Jordan</td><td><span class="badge warning">待评审</span></td><td><div class="progress warning"><span style="width:35%"></span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+<pre><code>&lt;div class="table-wrap"&gt;&lt;table class="table"&gt;…&lt;/table&gt;&lt;/div&gt;   窄屏下横向滚动</code></pre>
+  </section>
+
+  <section class="demo" id="tabs">
+    <h2>标签页 / 折叠面板</h2>
+    <div class="grid cols-2" style="--gap: 2rem">
+      <div>
+        <div class="tabs">
+          <div class="tab-list" role="tablist">
+            <button class="tab" data-tab="t1" aria-selected="true">概览</button>
+            <button class="tab" data-tab="t2">设置</button>
+            <button class="tab" data-tab="t3">日志</button>
+          </div>
+          <div class="tab-panel" id="t1"><p>这是概览内容。</p></div>
+          <div class="tab-panel" id="t2"><p>这是设置内容。</p></div>
+          <div class="tab-panel" id="t3"><p>这是日志内容。</p></div>
+        </div>
+        <div class="tabs pills mt-2">
+          <div class="tab-list" role="tablist">
+            <button class="tab" data-tab="p1">月付</button>
+            <button class="tab" data-tab="p2">年付</button>
+          </div>
+          <div class="tab-panel" id="p1"><p class="muted">胶囊样式：<code>.tabs.pills</code></p></div>
+          <div class="tab-panel" id="p2"><p class="muted">年付立省 20%。</p></div>
+        </div>
+      </div>
+      <div>
+        <details class="accordion" open><summary>需要构建工具吗？</summary><p>不需要，直接引入 CSS 文件即可。</p></details>
+        <details class="accordion"><summary>支持哪些浏览器？</summary><p>所有支持 color-mix() 的现代浏览器（Chrome 111+、Safari 16.2+、Firefox 113+）。</p></details>
+        <details class="accordion"><summary>可以只用 CSS 吗？</summary><p>可以，JS 仅用于标签页、对话框、导航折叠等交互。</p></details>
+      </div>
+    </div>
+<pre><code>&lt;div class="tabs"&gt;&lt;div class="tab-list"&gt;&lt;button class="tab" data-tab="id1"&gt;…&lt;/div&gt;&lt;div class="tab-panel" id="id1"&gt;…&lt;/div&gt;&lt;/div&gt;
+&lt;details class="accordion"&gt;&lt;summary&gt;标题&lt;/summary&gt;&lt;p&gt;内容&lt;/p&gt;&lt;/details&gt;</code></pre>
+  </section>
+
+  <section class="demo" id="modal">
+    <h2>对话框 / 通知</h2>
+    <div class="row">
+      <button class="btn primary" data-tk-open="demo-modal">打开对话框</button>
+      <button class="btn" data-tk-toast="这是一条普通通知">通知</button>
+      <button class="btn" data-tk-toast="保存成功" data-type="success">成功通知</button>
+      <button class="btn" data-tk-toast="操作失败，请重试" data-type="danger">错误通知</button>
+    </div>
+    <dialog class="modal" id="demo-modal">
+      <div class="modal-header"><h3>确认操作</h3><button class="btn ghost icon" data-tk-close aria-label="关闭">✕</button></div>
+      <div class="modal-body"><p class="mb-0">基于原生 <code>&lt;dialog&gt;</code>，支持 Esc 关闭、点击遮罩关闭。</p></div>
+      <div class="modal-footer"><button class="btn" data-tk-close>取消</button><button class="btn primary" data-tk-close data-tk-toast="已确认" data-type="success">确认</button></div>
+    </dialog>
+<pre><code>&lt;button data-tk-open="id"&gt;  &lt;dialog class="modal" id="id"&gt;…&lt;button data-tk-close&gt;…&lt;/dialog&gt;
+&lt;button data-tk-toast="消息" data-type="success"&gt;   或  TK.toast('消息', 'success')</code></pre>
+  </section>
+
+  <section class="demo" id="misc">
+    <h2>其他</h2>
+    <div class="row">
+      <div class="avatar-group">
+        <span class="avatar">A</span><span class="avatar">B</span><span class="avatar">C</span><span class="avatar" style="--size: 2.5rem">+5</span>
+      </div>
+      <span class="avatar" style="--size: 3.5rem">TK</span>
+      <span class="spinner"></span>
+      <button class="btn" data-tip="我是提示文字">悬停提示</button>
+      <span>快捷键 <kbd>Ctrl</kbd> + <kbd>K</kbd></span>
+    </div>
+    <div class="divider">分隔线</div>
+    <blockquote>引用块：简单就是美。</blockquote>
+<pre><code>.avatar(--size)  .avatar-group  .spinner  [data-tip="…"]  .divider  .progress  .reveal(滚动渐显)</code></pre>
+  </section>
+
+  <section class="demo" id="layout">
+    <h2>布局</h2>
+    <div class="grid" style="--min: 140px; --gap: .75rem">
+      <div class="card text-center small">auto</div><div class="card text-center small">grid</div><div class="card text-center small">按 --min</div><div class="card text-center small">自动换行</div><div class="card text-center small">缩放窗口</div><div class="card text-center small">试试看</div>
+    </div>
+<pre><code>.container(.narrow)  .section(.alt)  .grid(--min, --gap)  .grid.cols-2/3/4  .row  .stack  .between  .center  .spacer
+.layout &gt; .sidebar + main（后台布局，窄屏自动变为顶部横向导航）
+.hide-sm  .show-sm  .muted  .lead  .small  .text-center  .gradient-text  .mt-0~3  .mb-0~3</code></pre>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container row between"><span>TK UI 组件总览</span><a href="#theme">回到顶部 ↑</a></div>
+</footer>
+</body>
+</html>

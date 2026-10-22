@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- 本页主题：rose 预设，并改用衬线字体增强阅读感 -->
+<html lang="zh-CN" data-primary="rose" style="--tk-font: ui-serif, Georgia, 'Songti SC', 'Noto Serif SC', serif">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用 CSS 变量构建主题系统 · 博客示例 · TK UI</title>
+  <link rel="stylesheet" href="../tk/tk.css">
+  <script src="../tk/tk.js"></script>
+  <style>
+    .article { font-size: 1.08rem; line-height: 1.85; }
+    .article h2 { margin-top: 2.2rem; font-size: 1.55rem; }
+    .article p, .article li { color: color-mix(in oklab, var(--tk-text) 88%, var(--tk-muted)); }
+    .cover { aspect-ratio: 21 / 9; border-radius: var(--tk-radius); margin: 2rem 0;
+      background: radial-gradient(circle at 20% 30%, color-mix(in oklab, var(--tk-primary) 70%, #fff), transparent 55%),
+                  radial-gradient(circle at 80% 70%, color-mix(in oklab, var(--tk-primary), #7c3aed 60%), transparent 55%), var(--tk-surface-2); }
+    .navbar, .btn, .badge, .eyebrow, .footer, label { font-family: system-ui, -apple-system, "PingFang SC", sans-serif; }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container narrow navbar-inner">
+    <a class="brand" href="blog.html"><span class="brand-mark">✎</span>小记</a>
+    <button class="nav-toggle" data-tk-nav aria-label="菜单" aria-expanded="false"><span></span></button>
+    <nav class="nav-menu">
+      <a class="active" href="blog.html">文章</a>
+      <a href="#about">关于</a>
+      <a href="../tkui.html">TK UI</a>
+    </nav>
+    <button class="btn ghost icon" data-tk-mode aria-label="切换明暗模式">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="container narrow section">
+  <article class="article">
+    <div class="row mb-2"><span class="badge">前端</span><span class="badge info">CSS</span></div>
+    <h1>用 CSS 变量构建一个可切换的主题系统</h1>
+    <div class="row muted small">
+      <span class="avatar" style="--size: 2.2rem">TK</span>
+      <span>tkcoding · 2026 年 10 月 22 日 · 阅读约 5 分钟</span>
+    </div>
+    <div class="cover" role="img" aria-label="封面"></div>
+
+    <p>过去，给网站换主题色往往意味着重新编译 Sass 或维护多份样式表。如今借助 <strong>CSS 自定义属性</strong> 与 <code>color-mix()</code>，只需一个变量就能驱动整套配色。</p>
+
+    <h2>一、只定义一个主色</h2>
+    <p>把主色声明在根元素上，其余色阶全部由它推导：</p>
+<pre><code>:root {
+  --tk-primary: #e11d48;
+  --tk-primary-soft: color-mix(in oklab, var(--tk-primary) 13%, transparent);
+  --tk-primary-hover: color-mix(in oklab, var(--tk-primary), #000 14%);
+}</code></pre>
+
+    <blockquote>好的设计系统，应当让「改一处」就能「变全局」。</blockquote>
+
+    <h2>二、按页面覆盖</h2>
+    <p>每个页面只要在 <code>&lt;html&gt;</code> 上写入不同的值，就拥有了独立的品牌色。本页就使用了 <code>data-primary="rose"</code>，并顺手把字体换成了衬线体。</p>
+
+    <div class="alert"><div><strong>小技巧：</strong>派生变量必须和主色声明在同一个元素上（或其子元素中重新声明），否则会沿用父级计算好的旧值。</div></div>
+
+    <h2>三、别忘了暗色模式</h2>
+    <ul>
+      <li>使用 <code>prefers-color-scheme</code> 跟随系统；</li>
+      <li>提供 <code>data-mode</code> 属性允许用户手动覆盖；</li>
+      <li>把选择保存在 <code>localStorage</code> 中。</li>
+    </ul>
+    <p>点击右上角的 <kbd>◐</kbd> 按钮试试看。</p>
+
+    <hr>
+    <div class="row between">
+      <div class="row"><button class="btn soft pill" data-tk-toast="感谢点赞 ❤">❤ 喜欢</button><button class="btn ghost pill" data-tk-toast="链接已复制" data-type="success">分享</button></div>
+      <a href="#" class="small">← 上一篇</a>
+    </div>
+  </article>
+
+  <div class="card mt-3" id="about">
+    <div class="row" style="align-items: flex-start">
+      <span class="avatar" style="--size: 3.5rem">TK</span>
+      <div style="flex: 1; min-width: 200px">
+        <h4 class="mb-1">关于作者</h4>
+        <p class="muted small">热爱简洁的前端工程师。订阅以获取新文章通知。</p>
+        <div class="input-group"><input type="email" placeholder="you@example.com" aria-label="邮箱"><button class="btn primary" data-tk-toast="订阅成功" data-type="success">订阅</button></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container narrow row between"><span>© 2026 小记</span><a href="../tkui.html">由 TK UI 驱动</a></div>
+</footer>
+</body>
+</html>
