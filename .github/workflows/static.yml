@@ -1,0 +1,66 @@
+# 从 src + public 构建到 dist，再发布到 GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 如果你有 npm 构建，打开下面三段
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20"
+      #     cache: npm
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Build
+      #   run: npm run build
+
+      - name: Build dist from src and public
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          # 先拷贝 public（favicon、robots.txt、CNAME 等原样资源）
+          if [ -d public ]; then cp -r public/. dist/; fi
+          # 再用 src 覆盖，保证 src 里的 html/css/js 生效
+          if [ -d src ]; then cp -r src/. dist/; fi
+          # 禁用默认 Jekyll 构建，避免下划线目录被忽略
+          touch dist/.nojekyll
+          echo "----- dist 内容 -----"
+          ls -R dist
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
